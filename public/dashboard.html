@@ -1,0 +1,83 @@
+<html>
+<head>
+    <title>Dashboard</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+    <div class="sidemenu">
+        <div class="sidemenu-logo"><img width="50%" src="twentyfour_logo.png"></div>
+        <div class="sidemenu-links">
+            <div class="active sidemenu-link"><i class="large material-icons">dashboard</i></div>
+            <div class="sidemenu-link"><i class="large material-icons">trending_up</i></div>
+            <div class="sidemenu-link"><i class="large material-icons">people</i></div>
+            <div class="sidemenu-link"><i class="large material-icons">settings</i></div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="title">Dashboard</div>
+        <div class="card">
+            <div class="card-title">Physics Group</div>
+            <canvas id="physicsgroup" class="graph"></canvas>
+            <div class="card-footer">
+                <div class="footer-info">
+                    <div class="infotag">Team: 4 members</div>
+                    <div class="infotag">Commit History:</div>
+                    <div class="infotag">- Alfred: Force Equation!</div>
+                    <div class="infotag">- Alice: USE BEDMAS!</div>
+                </div>
+                <div class="footer-interact">
+                    <button class="settings-btn">Settings</button>
+                    <button class="manage-btn">Manage</button>
+                </div>
+            </div>
+        </div>
+        <div class="add-card"><i class="large material-icons">add</i></div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <script>
+        var options = {
+  type: 'line',
+  data: {
+    labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+    datasets: [
+	    {
+	      label: '# of Votes',
+	      data: [12, 19, 3, 8, 10, 12],
+      	borderWidth: 1
+    	}
+		]
+  },
+  options: {
+    tooltips: {enabled: false},
+    hover: {mode: null},
+    legend: {
+            display: false
+         },
+  	scales: {
+    	yAxes: [{
+            gridLines: {
+            display: false,
+      },
+        ticks: {
+			display: false
+        },
+      }],
+      xAxes: [{
+        gridLines: {
+            display: false,
+      },
+        ticks: {
+			display: false
+        }
+      }]
+    }
+  }
+}
+
+var ctx = document.getElementById('physicsgroup').getContext('2d');
+new Chart(ctx, options);
+    </script>
+</body>
+
+</html>
