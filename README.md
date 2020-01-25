@@ -1,2 +1,2 @@
 # twentyfour
-An application to schedule sleeping patterns on an airplane to decrease or prevent jetlag.
+An application to make team management intuitive and simple
