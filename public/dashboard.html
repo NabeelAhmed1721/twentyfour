@@ -1,8 +1,47 @@
 <html>
 <head>
     <title>Dashboard</title>
+    <script src="data.json"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="styles/dashboard.css">
+    <style>
+      .modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+    </style>
 </head>
 <body>
     <div class="sidemenu">
@@ -14,17 +53,15 @@
             <div class="sidemenu-link"><i class="large material-icons">settings</i></div>
         </div>
     </div>
-    <div class="container">
+    <div id="container" class="container">
         <div class="title">Dashboard</div>
+
         <div class="card">
             <div class="card-title">Physics Group</div>
             <canvas id="physicsgroup" class="graph"></canvas>
             <div class="card-footer">
                 <div class="footer-info">
                     <div class="infotag">Team: 4 members</div>
-                    <div class="infotag">Commit History:</div>
-                    <div class="infotag">- Alfred: Force Equation!</div>
-                    <div class="infotag">- Alice: USE BEDMAS!</div>
                 </div>
                 <div class="footer-interact">
                     <button class="settings-btn">Settings</button>
@@ -32,8 +69,102 @@
                 </div>
             </div>
         </div>
-        <div class="add-card"><i class="large material-icons">add</i></div>
+       <!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <p>Create A project</p>
+    <form action="/api/add" method="POST">
+      <input type="text" placeholder="Title of Project" name="title">
+      <input type="text" placeholder="Number of Members" name="team">
+      <input type="submit" value="Create">
+    </form>
+  </div>
+
+</div><div id="myModal"></div>
+        <div  style="z-index: 100000;" id="ADDER" class="add-card"><i class="large material-icons">add</i></div>
     </div>
+    <script>
+      // Get the modal
+var modal = document.getElementById("myModal");
+
+// Get the button that opens the modal
+var btn = document.getElementById("ADDER");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+    </script>
+    <script>
+      function createCardObject(title, team, history) {
+        var cardObject = document.createElement("div");
+        var cardObjectTitle = document.createElement("div");
+        var cardfootercanvas = document.createElement("canvas");
+        var cardfooter = document.createElement("div");
+        var cardfooterInfo = document.createElement("div");
+        var infotag = document.createElement("div");
+        var cardfooterInteract = document.createElement("div");
+        var settingsBtn = document.createElement("button");
+        var AmanageBtn = document.createElement("a");
+        var manageBtn = document.createElement("button");
+
+        cardObject.setAttribute('class', 'card');
+        cardObjectTitle.setAttribute('class', 'card-title');
+        cardfootercanvas.setAttribute('class', 'graph');
+        cardfootercanvas.setAttribute('id', title.toLowerCase().replace(/\s/g, ''));
+        cardfooter.setAttribute('class', 'card-footer');
+        cardfooterInfo.setAttribute('class', 'footer-info');
+        infotag.setAttribute('class', 'infotag');
+        cardfooterInteract.setAttribute('class', 'footer-interact');
+        settingsBtn.setAttribute('class', 'settings-btn');
+        manageBtn.setAttribute('class', 'manage-btn');
+        AmanageBtn.setAttribute('href', 'card.html?v='+title.toLowerCase().replace(/\s/g, ''));
+
+        cardObjectTitle.appendChild(document.createTextNode(title));
+        infotag.appendChild(document.createTextNode('Team: '+team));
+        settingsBtn.appendChild(document.createTextNode('Settings'));
+        manageBtn.appendChild(document.createTextNode('Manage'));
+        
+        
+        cardObject.append(cardObjectTitle);
+        cardObject.append(cardfootercanvas);
+        cardObject.append(cardfooter);
+        cardfooter.append(cardfooterInfo);
+        cardfooterInfo.append(infotag);
+        cardfooterInteract.append(settingsBtn);
+        AmanageBtn.append(manageBtn)
+        cardfooterInteract.append(AmanageBtn);
+        cardfooter.append(cardfooterInteract);
+        document.getElementById('container').append(cardObject);
+    }
+    for(let x=0; x<data.projects.length; x++){
+      let cardIndex = data.projects[x];
+      console.log(cardIndex)
+      createCardObject(
+        cardIndex.title,
+        cardIndex.team,
+        cardIndex.history,
+      );
+    }
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
     <script>
         var options = {

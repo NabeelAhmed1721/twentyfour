@@ -1,0 +1,170 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:600&display=swap');
+
+body {margin: 0; overflow-x: hidden;}
+
+.sidemenu {
+    position: fixed;
+    width: 120px;
+    height: 100%;
+    box-shadow: 3px 2px 8px rgba(0,0,0,0.15);
+}
+
+.sidemenu-logo {
+    width: 100%;
+    height: 120px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+
+.sidemenu-links {
+    width: 100%;
+    margin-top: 25px;
+    height: calc(100% - 120px - 25px);
+}
+
+.sidemenu-link {
+    width:100%;
+    height: 75px;
+    float: left;
+    margin-top: 15px;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.sidemenu-link:hover {
+    background-color: lightgray;
+}
+
+.sidemenu-link i {
+    line-height: 75px;
+    user-select: none;
+    font-size: 45px;
+}
+
+.active {
+    background-color: grey;
+    border-right: white 10px;
+}
+
+.active:hover {
+    background-color: grey;
+}
+
+.active i {
+    color: lightgrey;
+}
+
+.container {
+    float: right;
+    width: calc(100% - 120px);
+}
+
+.card {
+    position: relative;
+    margin: 20px;
+    width: 400px;
+    height: 420px;
+    float: left;
+    background-color: pink;
+    box-shadow: 3px 2px 8px rgba(0,0,0,0.15);
+}
+
+.card-title {
+    z-index: 10;
+    margin: 10px;
+    font-size: 20px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.card-bg {
+    width:100%;
+    position: absolute;
+    z-index: 0;
+}
+
+.card-footer {
+    z-index: 10;
+    position: absolute;
+    width: 100%;
+    height: 200px;
+    background-color: rgba(0,0,0,0.5);
+    bottom: 0;
+}
+
+.title {
+    width: 100%;
+    font-size: 32px;
+    margin: 10px;
+    margin-left: 20px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.infotag {
+    font-size: 12px;
+    width: 100%;
+    margin: 10px;
+    margin-top: 5px;
+    color: white;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.footer-info {
+    width: 50%;
+    height: 100%;
+    float: left;
+}
+
+.footer-interact {
+    position: relative;
+    text-align: center;
+    width: 50%;
+    height: 100%;
+    float: right;
+    background-color: rgba(0, 0, 0, 0.50);
+}
+
+.footer-interact button {
+    margin-top: 25px;
+    bottom: 0;
+    font-family: 'Open Sans', sans-serif;
+    width: 60%;
+    cursor: pointer;
+    height: 45px;
+    border-radius: 4px;
+    box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.25);
+    padding: 12px;
+}
+
+.settings-btn {
+    border: none;
+    background-color: grey;
+}
+
+.manage-btn {
+    border: none;
+    background-color: rgb(159, 220, 87);
+}
+
+.graph {
+    width: 100%;
+}
+
+.add-card {
+    position: fixed;
+    right: 50px;
+    bottom: 50px;
+    border-radius: 50%;
+    text-align: center;
+    width: 75px;
+    height: 75px;
+    box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.25);
+}
+
+.add-card i {
+    user-select: none;
+    line-height: 75px;
+}
