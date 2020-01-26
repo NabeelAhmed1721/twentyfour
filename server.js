@@ -27,8 +27,13 @@ app.get('/dashboard',(req,res)=>{
     res.sendFile(__dirname+"/public/dashboard.html")
 })
 
+app.get('/data',(req,res)=>{
+    res.sendFile(__dirname+"/public/data.html")
+})
+
 app.post('/api/add',(req,res)=>{
     var title = (req.body.title).toString();
+    var desc = (req.body.desc).toString();
     var team = parseInt(req.body.team)
     fs.readFile(__dirname+'/public/data.json','utf8',function (err, data){
         if (err) throw err
@@ -37,6 +42,7 @@ app.post('/api/add',(req,res)=>{
 
         var temp = {}
         temp.title = title
+        temp.desc = desc
         temp.team = team
         json.projects.push(temp)
         console.log(json)
