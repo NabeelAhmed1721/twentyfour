@@ -6,7 +6,7 @@ const user = require('./user');
 
 
 //Connect
-mongoose.connect(`mongodb+srv://na-admin:QI0J4KNDpMylsLMY@everfoodbucket-qpofb.mongodb.net/${_DATABASE}?retryWrites=true&w=majority`, { useNewUrlParser: true, useUnifiedTopology: true}).
+mongoose.connect("INPUT_DATABASE_URL_HERE", { useNewUrlParser: true, useUnifiedTopology: true}).
 catch(error => console.log(error));
 
 //Schema Export
