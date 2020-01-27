@@ -1,1 +1,1 @@
-var data ={"projects":[{"title":"Physics homeworrk","desc":"Made sure to add velotiity! due Jan 5th","team":2}]}
+var data ={"projects":[{"title":"Physics homeworrk","desc":"Made sure to add velotiity! due Jan 5th","team":2},{"title":"CYHacks","desc":"debug this project!!\r\n\r\ndue: Today","team":4},{"title":"what's up","desc":"hetttt","team":5},{"title":"French Project","desc":"- Complete the verbs\r\n\r\ndue: Tmrw","team":3}]}

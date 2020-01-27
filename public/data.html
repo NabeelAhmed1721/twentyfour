@@ -3,7 +3,7 @@
     <title>Dashboard</title>
     <script src="data.json"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="styles/dashboard.css">
+    <link rel="stylesheet" href="styles/stat.css">
     <style>
       .modal {
   display: none; /* Hidden by default */
@@ -54,162 +54,27 @@
         </div>
     </div>
     <div id="container" class="container">
-        <div class="title">Dashboard</div>
+        <div class="title">Stats</div>
 
         <div class="card">
-            <div class="card-title">Physics Group</div>
-            <div class="card-desc">Physics Group</div>
+            <div class="card-title">Activity Today</div>
+            <div class="card-desc"></div>
             <canvas id="physicsgroup" class="graph"></canvas>
-            <div class="card-footer">
-                <div class="footer-info">
-                    <div class="infotag">Team: 4 members</div>
-                </div>
-                <div class="footer-interact">
-                    <button class="settings-btn">Settings</button>
-                    <button class="manage-btn">Manage</button>
-                </div>
-            </div>
         </div>
-       <!-- The Modal -->
-<div style="z-index: 10000000;" id="myModal" class="modal">
 
-  <!-- Modal content -->
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <p>Create A project</p>
-    <form action="/api/add" method="POST">
-      <input type="text" placeholder="Title of Project" name="title">
-      <textarea name="desc"></textarea>
-      <input type="text" placeholder="Number of Members" name="team">
-      <input type="submit" value="Create">
-    </form>
-  </div>
-
-</div><div id="myModal"></div>
-        <div  style="z-index: 100000;" id="ADDER" class="add-card"><i class="large material-icons">add</i></div>
-    </div>
-    <script>
-      // Get the modal
-var modal = document.getElementById("myModal");
-
-// Get the button that opens the modal
-var btn = document.getElementById("ADDER");
-
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
-
-// When the user clicks the button, open the modal 
-btn.onclick = function() {
-  modal.style.display = "block";
-}
-
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-  modal.style.display = "none";
-}
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-}
-    </script>
-    <script>
-      function createCardObject(title, team, desc, history) {
-        var cardObject = document.createElement("div");
-        var cardObjectTitle = document.createElement("div");
-        var cardObjectDesc = document.createElement("div");
-        var cardfootercanvas = document.createElement("canvas");
-        var cardfooter = document.createElement("div");
-        var cardfooterInfo = document.createElement("div");
-        var infotag = document.createElement("div");
-        var cardfooterInteract = document.createElement("div");
-        var settingsBtn = document.createElement("button");
-        var AmanageBtn = document.createElement("a");
-        var manageBtn = document.createElement("button");
-
-        cardObject.setAttribute('class', 'card');
-        cardObjectTitle.setAttribute('class', 'card-title');
-        cardObjectDesc.setAttribute('class', 'card-desc');
-        cardfootercanvas.setAttribute('class', 'graph');
-        cardfootercanvas.setAttribute('id', title.toLowerCase().replace(/\s/g, ''));
-        cardfooter.setAttribute('class', 'card-footer');
-        cardfooterInfo.setAttribute('class', 'footer-info');
-        infotag.setAttribute('class', 'infotag');
-        cardfooterInteract.setAttribute('class', 'footer-interact');
-        settingsBtn.setAttribute('class', 'settings-btn');
-        manageBtn.setAttribute('class', 'manage-btn');
-        AmanageBtn.setAttribute('href', 'card.html?v='+title.toLowerCase().replace(/\s/g, ''));
-
-        cardObjectDesc.appendChild(document.createTextNode(desc));
-        cardObjectTitle.appendChild(document.createTextNode(title));
-        infotag.appendChild(document.createTextNode('Team: '+team));
-        settingsBtn.appendChild(document.createTextNode('Settings'));
-        manageBtn.appendChild(document.createTextNode('Manage'));
-        
-        
-        cardObject.append(cardObjectTitle);
-        cardObject.append(cardObjectDesc);
-        cardObject.append(cardfootercanvas);
-        cardObject.append(cardfooter);
-        cardfooter.append(cardfooterInfo);
-        cardfooterInfo.append(infotag);
-        cardfooterInteract.append(settingsBtn);
-        AmanageBtn.append(manageBtn)
-        cardfooterInteract.append(AmanageBtn);
-        cardfooter.append(cardfooterInteract);
-        document.getElementById('container').append(cardObject);
-    }
-    for(let x=0; x<data.projects.length; x++){
-      let cardIndex = data.projects[x];
-      console.log(cardIndex)
-      createCardObject(
-        cardIndex.title,
-        cardIndex.team,
-        cardIndex.desc,
-        cardIndex.history,
-      );
-    }
-    </script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
     <script>
         var options = {
   type: 'line',
   data: {
-    labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+    labels: ['9:00', "10:00", "11:00", "12:00", "6:00", "7:10","7:40"],
     datasets: [
 	    {
-	      label: '# of Votes',
-	      data: [12, 19, 3, 8, 10, 12],
+	      label: 'Activty',
+	      data: [12, 19, 3, 8, 10, 12,1],
       	borderWidth: 1
     	}
 		]
-  },
-  options: {
-    tooltips: {enabled: false},
-    hover: {mode: null},
-    legend: {
-            display: false
-         },
-  	scales: {
-    	yAxes: [{
-            gridLines: {
-            display: false,
-      },
-        ticks: {
-			display: false
-        },
-      }],
-      xAxes: [{
-        gridLines: {
-            display: false,
-      },
-        ticks: {
-			display: false
-        }
-      }]
-    }
   }
 }
 
